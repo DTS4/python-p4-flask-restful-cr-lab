@@ -18,12 +18,11 @@ api = Api(app)
 # Resource for `/plants`
 class Plants(Resource):
     def get(self):
-        plants = Plant.query.all()
-        if not plants:
-            return make_response({"message": "No plants found"}, 404)
-        
-        response = [plant.to_dict() for plant in plants]
-        return make_response(jsonify(response), 200)
+       plants =Plant.query.all()
+        # plants_dict = [plant.to_dict() for plant in Plant.query.all()]
+       return jsonify([plant.to_dict() for plant in  plants])
+         
+
 
     def post(self):
         data = request.get_json()
